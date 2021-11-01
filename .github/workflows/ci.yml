@@ -8,6 +8,7 @@ on:
       - "*.md"
       - "docs/**"
       - "media/**"
+  workflow_dispatch:
 jobs:
   nodejs:
     name: Node.js
@@ -24,11 +25,11 @@ jobs:
         run: |
           git config core.symlinks true
           git reset --hard
-      - run: rm .npmrc
+#       - run: rm .npmrc
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          cache: npm
+#           cache: npm
       - name: Upgrade npm
         run: npm install --global npm@^8.1.2
       - run: npm install --no-audit
@@ -46,11 +47,11 @@ jobs:
         ts-version: [~4.4]
     steps:
       - uses: actions/checkout@v2
-      - run: rm .npmrc
+#       - run: rm .npmrc
       - uses: actions/setup-node@v2
         with:
           node-version: ^12.22
-          cache: npm
+#           cache: npm
       - name: Upgrade npm
         run: npm install --global npm@^8.1.2
       - run: npm install --no-audit
@@ -65,11 +66,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: rm .npmrc
+#       - run: rm .npmrc
       - uses: actions/setup-node@v2
         with:
           node-version: ^12.22
-          cache: npm
+#           cache: npm
       - name: Upgrade npm
         run: if [[ "$(npm -v)" != "8.1.2" ]]; then npm install --global npm@8.1.2; fi
       - run: npm install --no-audit --lockfile-version=3
@@ -88,7 +89,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: rm .npmrc
+#       - run: rm .npmrc
       - uses: actions/setup-node@v2
         with:
           node-version: ^12.22
@@ -102,11 +103,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: rm .npmrc
+#       - run: rm .npmrc
       - uses: actions/setup-node@v2
         with:
           node-version: ^16.4
-          cache: npm
+#           cache: npm
       - name: Upgrade npm
         run: npm install --global npm@^8.1.2
       - run: npm install --no-audit
