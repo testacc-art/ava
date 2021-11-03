@@ -26,16 +26,12 @@ jobs:
           git config core.symlinks true
           git reset --hard
 #       - run: rm .npmrc
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-#           cache: npm
-      - name: Upgrade npm
-        run: npm install --global npm@^8.1.2
-      - uses: actions/setup-node@v2
+      - uses: dmitry-shibanov/setup-node@error-output
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
+      - name: Upgrade npm
+        run: npm install --global npm@^8.1.2
       - run: npm install --no-audit
       - run: npm run cover
       - uses: codecov/codecov-action@v2
