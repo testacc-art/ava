@@ -29,7 +29,8 @@ jobs:
       - uses: actions/setup-node@main
         with:
           node-version: ${{ matrix.node-version }}
-          cache: npm
+          cache: pnpm
+          cache-dependency-path: package-lock.json
       - name: Upgrade npm
         run: npm install --global npm@^8.1.2
       - run: npm install --no-audit
