@@ -25,8 +25,8 @@ jobs:
         run: |
           git config core.symlinks true
           git reset --hard
-#       - run: rm .npmrc
-      - uses: dmitry-shibanov/setup-node@error-output
+      - run: rm .npmrc
+      - uses: actions/setup-node@main
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
@@ -47,11 +47,11 @@ jobs:
         ts-version: [~4.4]
     steps:
       - uses: actions/checkout@v2
-#       - run: rm .npmrc
-      - uses: actions/setup-node@v2
+      - run: rm .npmrc
+      - uses: actions/setup-node@main
         with:
           node-version: ^12.22
-#           cache: npm
+          cache: npm
       - name: Upgrade npm
         run: npm install --global npm@^8.1.2
       - run: npm install --no-audit
@@ -66,11 +66,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-#       - run: rm .npmrc
-      - uses: actions/setup-node@v2
+      - run: rm .npmrc
+      - uses: actions/setup-node@main
         with:
           node-version: ^12.22
-#           cache: npm
+          cache: npm
       - name: Upgrade npm
         run: if [[ "$(npm -v)" != "8.1.2" ]]; then npm install --global npm@8.1.2; fi
       - run: npm install --no-audit --lockfile-version=3
@@ -83,14 +83,13 @@ jobs:
             echo "package-lock.json was modified unexpectedly. Please rebuild it using npm@$(npm -v) and commit the changes."
             exit 1
           fi
-
   without_lockfile:
     name: Install dependencies without using a lockfile
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-#       - run: rm .npmrc
-      - uses: actions/setup-node@v2
+      - run: rm .npmrc
+      - uses: actions/setup-node@main
         with:
           node-version: ^12.22
       - name: Upgrade npm
@@ -103,11 +102,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-#       - run: rm .npmrc
-      - uses: actions/setup-node@v2
+      - run: rm .npmrc
+      - uses: actions/setup-node@main
         with:
           node-version: ^16.4
-#           cache: npm
+          cache: npm
       - name: Upgrade npm
         run: npm install --global npm@^8.1.2
       - run: npm install --no-audit
